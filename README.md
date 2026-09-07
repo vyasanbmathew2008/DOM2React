@@ -2,7 +2,7 @@
 
 Convert traditional HTML, CSS, and JavaScript websites into modern React + Vite projects.
 
-DOM2React is a Python-based website migration tool designed to convert multi-page static websites into React applications with reusable components, page routing, styles, and copied assets.
+DOM2React is a Python-based website migration tool designed to convert static websites into React applications with reusable components, page routing, styles, and copied assets.
 
 ## Features
 
@@ -14,42 +14,6 @@ DOM2React is a Python-based website migration tool designed to convert multi-pag
 - Preserve original JavaScript files for manual migration
 - Generate a React + Vite project structure
 - Support React Router for multi-page websites
-
-## Planned conversion structure
-
-```text
-input-website/
-├── index.html
-├── about.html
-├── contact.html
-├── css/
-├── js/
-└── images/
-```
-
-Output:
-
-```text
-converted-react-app/
-├── index.html
-├── package.json
-├── vite.config.js
-├── public/
-│   └── images/
-├── src/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── main.jsx
-│   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── Navbar.jsx
-│   │   └── Footer.jsx
-│   └── pages/
-│       ├── Home.jsx
-│       ├── About.jsx
-│       └── Contact.jsx
-└── legacy-js/
-```
 
 ## Requirements
 
@@ -67,13 +31,13 @@ cd DOM2React
 
 ## Usage
 
-The planned command-line interface is:
+Run the converter:
 
 ```bash
-python html_to_react.py ./my-website --output ./my-react-app
+python dom2react.py ./my-website --output ./my-react-app
 ```
 
-Then install the generated React project dependencies:
+Then install and start the generated React project:
 
 ```bash
 cd my-react-app
@@ -81,49 +45,14 @@ npm install
 npm run dev
 ```
 
-## Conversion example
+## Project structure
 
-Input:
-
-```html
-<section id="hero">
-  <h1>Welcome</h1>
-  <p>This is my website.</p>
-</section>
+```text
+DOM2React/
+├── dom2react.py
+├── README.md
+└── ...
 ```
-
-Generated React component:
-
-```jsx
-function Hero() {
-  return (
-    <section id="hero">
-      <h1>Welcome</h1>
-      <p>This is my website.</p>
-    </section>
-  );
-}
-
-export default Hero;
-```
-
-## JavaScript migration
-
-HTML and CSS can usually be converted automatically, but JavaScript that directly manipulates the DOM may require manual migration to React state, props, and effects.
-
-For example, DOM manipulation such as:
-
-```js
-document.getElementById("message").innerText = "Hello";
-```
-
-is normally rewritten using React state:
-
-```jsx
-const [message, setMessage] = useState("");
-```
-
-DOM2React preserves original JavaScript files when automatic conversion is not safe.
 
 ## Project status
 
